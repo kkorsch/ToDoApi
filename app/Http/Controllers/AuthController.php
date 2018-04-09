@@ -27,7 +27,7 @@ class AuthController extends Controller
     public function signIn( Request $request )
     {
       try {
-        $token = JWT::attempt( $request->only('email', 'password'), [
+        $token = JWTAuth::attempt( $request->only('email', 'password'), [
           'exp' => Carbon::now()->addWeek()->timestamp,
         ]);
       } catch ( JWTException $e ) {
