@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use JWTAuth;
+use carbon\Carbon;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Transformers\UserTransformer;
 use App\Http\Requests\RegisterRequest;
+use Tymon\JWTAuth\Exceptions\JWTException;
 
 class AuthController extends Controller
 {
@@ -19,5 +22,32 @@ class AuthController extends Controller
       $user->save();
 
       return fractal()->item( $user )->transformWith( new UserTransformer )->toArray();
+    }
+
+    public function signIn( Request $request )
+    {
+      try {
+        $token = JWT::attempt( $request->only('email', 'password'), [
+          'exp' => Carbon::now()->addWeek()->timestamp,
+        ]);
+      } catch ( JWTException $e ) {
+        return response()->json([
+          'message' => 'Could not authenticate',
+        ], 500 );
+      }
+
+      if ( !$token ) {
+        return response()->json([
+          'message' => 'Could not authenticate',
+        ], 401 );
+      }
+
+      return fractal()
+              ->item( $request->user() )
+              ->transformWith( new UserTransformer )
+              ->addMeta([
+                'token' => $token,
+              ])
+              ->toArray();
     }
 }
