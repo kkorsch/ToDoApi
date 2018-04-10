@@ -35,4 +35,11 @@ class TaskListController extends Controller
 
       return fractal()->item( $list )->transformWith( new TaskListTransformer )->toArray();
     }
+
+    public function destroy( TaskList $list )
+    {
+      $list->delete();
+
+      return response( null, 204 );
+    }
 }
