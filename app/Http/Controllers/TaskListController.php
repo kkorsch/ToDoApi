@@ -29,6 +29,8 @@ class TaskListController extends Controller
 
     public function update( StoreListRequest $request, TaskList $list )
     {
+      $this->authorize( 'update', $list );
+      
       $list->name = $request->name;
 
       $list->save();
