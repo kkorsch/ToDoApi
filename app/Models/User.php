@@ -27,7 +27,7 @@ class User extends Authenticatable
         'password',
     ];
 
-    public function owsList( TaskList $list )
+    public function ownsList( TaskList $list )
     {
       return $list->user->id === $this->id;
     }
