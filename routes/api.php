@@ -17,6 +17,6 @@ Route::post( '/signin', 'AuthController@signIn' );
 Route::group( ['middleware' => 'jwt.auth'], function() {
   Route::get( '/lists', 'TaskListController@index' );
   Route::post( '/lists', 'TaskListController@store' );
-  Route::put( '/lists/{tasklist}', 'TaskListController@update' );
+  Route::put( '/lists/{list}', 'TaskListController@update' );
 
 });

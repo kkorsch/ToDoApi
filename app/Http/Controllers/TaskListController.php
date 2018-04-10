@@ -26,4 +26,9 @@ class TaskListController extends Controller
 
       return fractal()->item( $taskList )->transformWith( new TaskListTransformer )->toArray();
     }
+
+    public function update( StoreListRequest $request, TaskList $list )
+    {
+      var_dump($list->id);
+    }
 }
