@@ -27,6 +27,11 @@ class User extends Authenticatable
         'password',
     ];
 
+    public function owsList( TaskList $list )
+    {
+      return $list->user->id === $this->id;
+    }
+
     public function taskLists()
     {
        return $this->hasMany( TaskList::class );
