@@ -24,7 +24,7 @@ class StoreListRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required|max:40',
         ];
     }
 }
