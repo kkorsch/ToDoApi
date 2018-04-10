@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
 
-class List extends Authenticatable
+class TaskList extends Model
 {
     protected $fillable = ['name'];
 
