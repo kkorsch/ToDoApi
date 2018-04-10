@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use JWTAuth;
-use carbon\Carbon;
+use Carbon\Carbon;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Transformers\UserTransformer;
