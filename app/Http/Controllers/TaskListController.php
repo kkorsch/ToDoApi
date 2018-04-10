@@ -30,7 +30,7 @@ class TaskListController extends Controller
     public function update( StoreListRequest $request, TaskList $list )
     {
       $this->authorize( 'update', $list );
-      
+
       $list->name = $request->name;
 
       $list->save();
@@ -40,6 +40,8 @@ class TaskListController extends Controller
 
     public function destroy( TaskList $list )
     {
+      $this->authorize( 'destroy', $list );
+
       $list->delete();
 
       return response( null, 204 );
