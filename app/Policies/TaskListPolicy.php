@@ -14,4 +14,9 @@ class TaskListPolicy
     {
       return $user->ownsList( $list );
     }
+
+    public function destroy( User $user, TaskList $list )
+    {
+      return $user->ownsList( $list );
+    }
 }
