@@ -15,5 +15,5 @@ Route::post( '/register', 'AuthController@register' );
 Route::post( '/signin', 'AuthController@signIn' );
 
 Route::group( ['middleware' => 'jwt.auth'], function() {
-  Route::get( '/lists', 'ListController@index' );
+  Route::get( '/lists', 'TaskListController@index' );
 });
