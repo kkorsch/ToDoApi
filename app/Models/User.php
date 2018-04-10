@@ -27,7 +27,7 @@ class User extends Authenticatable
         'password',
     ];
 
-    public function tasklists()
+    public function taskLists()
     {
        return $this->hasMany( TaskList::class );
     }
