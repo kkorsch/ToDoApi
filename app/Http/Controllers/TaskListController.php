@@ -16,6 +16,13 @@ class TaskListController extends Controller
       return fractal()->collection( $tasklists )->transformWith( new TaskListTransformer )->toArray();
     }
 
+    public function show( TaskList $list )
+    {
+      $this->authorize( 'owner', $list );
+
+      return fractal()->item( $list )->includeTasks()->transformWith( new TaskListTransformer )->toArray();
+    }
+
     public function store( StoreListRequest $request )
     {
       $taskList = new TaskList;
