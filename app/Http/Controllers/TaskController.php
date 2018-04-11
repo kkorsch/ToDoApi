@@ -6,11 +6,11 @@ use App\Models\Task;
 use App\Models\TaskList;
 use Illuminate\Http\Request;
 use App\Transformers\TaskTransformer;
-use App\Http\Requests\StoreTaskReqeust;
+use App\Http\Requests\StoreTaskRequest;
 
 class TaskController extends Controller
 {
-    public function store( StoreTaskReqeust $request, TaskList $list )
+    public function store( StoreTaskRequest $request, TaskList $list )
     {
       $this->authorize( 'owner', $list );
 
