@@ -7,6 +7,8 @@ use League\Fractal\TransformerAbstract;
 
 class TaskListTransformer extends TransformerAbstract
 {
+  protected $availableIncludes = [ 'tasks '];
+
   public function transform( TaskList $list )
   {
     return [
@@ -15,5 +17,10 @@ class TaskListTransformer extends TransformerAbstract
       'created_at' => $list->created_at->toDateString(),
       'created_at_humans' => $list->created_at->diffForHumans(),
     ];
+  }
+
+  public function includeTasks( TaskList $list )
+  {
+    return $this->collection( $list->tasks, new TaskTransformer );
   }
 }
