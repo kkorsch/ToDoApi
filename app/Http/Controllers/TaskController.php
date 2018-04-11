@@ -12,7 +12,7 @@ class TaskController extends Controller
 {
     public function store( StoreTaskReqeust $request, TaskList $list )
     {
-      $this->authorize( 'storeTask', $list );
+      $this->authorize( 'owner', $list );
 
       $task = new Task;
       $task->body = $request->body;
