@@ -39,4 +39,17 @@ class TaskController extends Controller
 
       return fractal()->item( $task )->transformWith( new TaskTransformer )->toArray();
     }
+
+    public function destroy( TaskList $list, Task $task )
+    {
+      if ( $list->id !== $task->taskList->id ) {
+        return response( null, 404 );
+      }
+
+      $this->authorize( 'owner', $list );
+
+      $task->delete();
+
+      return response( null, 204 );
+    }
 }
