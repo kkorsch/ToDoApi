@@ -21,4 +21,5 @@ Route::group( ['middleware' => 'jwt.auth'], function() {
   Route::delete( '/lists/{list}', 'TaskListController@destroy' );
 
   Route::post( '/lists/{list}/task', 'TaskController@store' );
+  Route::patch( '/lists/{list}/task/{task}', 'TaskController@update' );
 });
