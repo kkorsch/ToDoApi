@@ -10,12 +10,7 @@ class TaskListPolicy
 {
     use HandlesAuthorization;
 
-    public function update( User $user, TaskList $list )
-    {
-      return $user->ownsList( $list );
-    }
-
-    public function destroy( User $user, TaskList $list )
+    public function owner( User $user, TaskList $list )
     {
       return $user->ownsList( $list );
     }
