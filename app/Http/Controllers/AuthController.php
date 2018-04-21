@@ -26,9 +26,11 @@ class AuthController extends Controller
 
     public function signIn( Request $request )
     {
+      $exp = Carbon::now()->addHour()->timestamp;
+
       try {
         $token = JWTAuth::attempt( $request->only('email', 'password'), [
-          'exp' => Carbon::now()->addHour()->timestamp,
+          'exp' => $exp,
         ]);
       } catch ( JWTException $e ) {
         return response()->json([
@@ -47,6 +49,7 @@ class AuthController extends Controller
               ->transformWith( new UserTransformer )
               ->addMeta([
                 'token' => $token,
+                'expiry_at' => $exp,
               ])
               ->toArray();
     }
