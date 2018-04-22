@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use JWTAuth;
 use Carbon\Carbon;
 use App\Models\User;
+use App\Models\TaskList;
 use Illuminate\Http\Request;
 use App\Transformers\UserTransformer;
 use App\Http\Requests\RegisterRequest;
@@ -20,6 +21,10 @@ class AuthController extends Controller
       $user->password = bcrypt( $request->password );
 
       $user->save();
+
+      $taskList = new TaskList;
+      $taskList->name = 'Default List';
+      $user->taskLists()->save( $taskList );
 
       return fractal()->item( $user )->transformWith( new UserTransformer )->toArray();
     }
