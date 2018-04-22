@@ -13,7 +13,7 @@ class TaskListController extends Controller
     {
       $tasklists = $request->user()->tasklists;
 
-      return fractal()->collection( $tasklists )->transformWith( new TaskListTransformer )->toArray();
+      return fractal()->collection( $tasklists )->includeTasks()->transformWith( new TaskListTransformer )->toArray();
     }
 
     public function show( TaskList $list )
