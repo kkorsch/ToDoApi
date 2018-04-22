@@ -15,13 +15,13 @@ Route::post( '/register', 'AuthController@register' );
 Route::post( '/signin', 'AuthController@signIn' );
 
 Route::group( ['middleware' => 'jwt.auth'], function() {
-  Route::get( '/lists', 'TaskListController@index' );
-  Route::get( '/lists/{list}', 'TaskListController@show' );
-  Route::post( '/lists', 'TaskListController@store' );
-  Route::put( '/lists/{list}', 'TaskListController@update' );
-  Route::delete( '/lists/{list}', 'TaskListController@destroy' );
+  Route::get( '/list', 'TaskListController@index' );
+  Route::get( '/list/{list}', 'TaskListController@show' );
+  Route::post( '/list', 'TaskListController@store' );
+  Route::put( '/list/{list}', 'TaskListController@update' );
+  Route::delete( '/list/{list}', 'TaskListController@destroy' );
 
-  Route::post( '/lists/{list}/task', 'TaskController@store' );
-  Route::patch( '/lists/{list}/task/{task}', 'TaskController@update' );
-  Route::delete( '/lists/{list}/task/{task}', 'TaskController@destroy' );
+  Route::post( '/list/{list}/task', 'TaskController@store' );
+  Route::patch( '/list/{list}/task/{task}', 'TaskController@update' );
+  Route::delete( '/list/{list}/task/{task}', 'TaskController@destroy' );
 });
